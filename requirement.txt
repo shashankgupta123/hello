@@ -33,4 +33,43 @@ if __name__ == "__main__":
 
 
 
+Node:-
+
+export const handler = async (event) => {
+  const number = event.number || 0; 
+  const result = number % 2 === 0 ? "Even" : "Odd";
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ number, result }),
+  };
+};
+
+Python width and height:
+import json
+
+def lambda_handler(event, context):
+    length = event.get('length', 0)  # Use .get() to avoid KeyError
+    width = event.get('width', 0)
+
+    area = length * width
+
+    return {
+        "statusCode": 200,
+        "body": json.dumps({"area": area})  # Proper JSON response format
+    }
+
+
+Python odd and even:
+import json
+
+def lambda_handler(event, context):
+    number = event.get('number', 0)  # Get the number from the event
+
+    result = "Even" if number % 2 == 0 else "Odd"
+
+    return {
+        "statusCode": 200,
+        "body": json.dumps({"number": number, "result": result})
+    }
 
